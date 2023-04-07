@@ -2,11 +2,11 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: dotnet-template
-  title: .Net 7 Service
-  description: Create a simple web api using .Net 7
+  title: ".Net 7 Service"
+  description: "Create a simple web api using .Net 7"
   tags:
     - recommended
-    - .Net
+    - dotnet
     - C#
 spec:
   owner: service@example.com
