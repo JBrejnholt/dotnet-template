@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Example.Controllers;
+namespace ${{values.artifact_id}}.Controllers;
 
 [ApiController]
 [Route("[controller]")]
