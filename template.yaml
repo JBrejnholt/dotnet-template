@@ -15,13 +15,14 @@ spec:
   parameters:
     - title: Provide some simple information
       required:
-        - component_id
+        - component_id # solution name
         - owner
+        - project_name
       properties:
         component_id:
           title: Name
           type: string
-          description: Unique name of the component
+          description: Unique name of the component - which will be used as the solution file name
           ui:field: EntityNamePicker
         description:
           title: Description
@@ -35,6 +36,10 @@ spec:
           ui:options:
             allowedKinds:
               - Group
+        project_name:
+          title: Name
+          type: string
+          description: Name of the project
     - title: Choose a location
       required:
         - repoUrl
@@ -59,6 +64,7 @@ spec:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
           artifact_id: ${{ parameters.component_id }}
+          project_name: ${{ parameters.project_name }}
           owner: ${{ parameters.owner }}
           destination: ${{ parameters.repoUrl | parseRepoUrl }}
           http_port: 8080

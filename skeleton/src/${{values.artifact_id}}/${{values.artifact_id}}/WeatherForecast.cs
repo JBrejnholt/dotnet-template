@@ -1,4 +1,4 @@
-﻿namespace ${{values.artifact_id}};
+﻿namespace ${{values.project_name}};
 
 public class WeatherForecast
 {

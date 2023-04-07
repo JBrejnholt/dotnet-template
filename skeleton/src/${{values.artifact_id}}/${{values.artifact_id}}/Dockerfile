@@ -7,17 +7,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["${{values.artifact_id}}/${{values.artifact_id}}.csproj", "${{values.artifact_id}}/"]
-RUN dotnet restore "${{values.artifact_id}}/${{values.artifact_id}}.csproj"
+COPY ["${{values.project_name}}/${{values.project_name}}.csproj", "${{values.project_name}}/"]
+RUN dotnet restore "${{values.project_name}}/${{values.project_name}}.csproj"
 COPY . .
-WORKDIR "/src/${{values.artifact_id}}"
-RUN dotnet build "${{values.artifact_id}}.csproj" -c Release -o /app/build
+WORKDIR "/src/${{values.project_name}}"
+RUN dotnet build "${{values.project_name}}.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "${{values.artifact_id}}.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "${{values.project_name}}.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENV ASPNETCORE_URLS http://+:8080
-ENTRYPOINT ["dotnet", "${{values.artifact_id}}.dll"]
+ENTRYPOINT ["dotnet", "${{values.project_name}}.dll"]
